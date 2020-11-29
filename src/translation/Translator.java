@@ -1,7 +1,5 @@
 package translation;
 
-import java.io.IOException;
-
 public abstract class Translator {
 	TranslationLoggable logger;
 
@@ -23,5 +21,5 @@ public abstract class Translator {
 		}
 	}
 
-	public abstract TranslationResult Translate(TranslationInfo translationInfo);
+	public abstract TransResult Translate(TransOption option);
 }

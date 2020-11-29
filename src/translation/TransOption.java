@@ -1,6 +1,6 @@
 package translation;
 
-public class TranslationInfo {
+public class TransOption {
 	private String sourceLanguage;
 	private String targetLanguage;
 	private String text;

@@ -5,18 +5,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import org.apache.commons.lang.StringEscapeUtils;
+
 
 public class GoogleTranslator extends Translator {
 
 	@Override
-	public TranslationResult Translate(TranslationInfo info) {
-		TranslationResult result = new TranslationResult();
+	public TransResult Translate(TransOption option) {
+		TransResult result = new TransResult();
 		StringBuilder response = new StringBuilder();
 		try {
 
 			String urlStr = "https://script.google.com/macros/s/AKfycbxWGbVLDsldxsFpn2AM5rr_effrWNSHFXS1TMwR6zhTyX24AXUH/exec"
-					+ "?q=" + URLEncoder.encode(info.getText(), "UTF-8") + "&target=" + info.getTargetLanguage()
-					+ "&source=" + info.getSourceLanguage();
+					+ "?q=" + URLEncoder.encode(option.getText(), "UTF-8") + "&target=" + option.getTargetLanguage()
+					+ "&source=" + option.getSourceLanguage();
 			URL url = new URL(urlStr);
 			
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -27,14 +29,14 @@ public class GoogleTranslator extends Translator {
 				response.append(inputLine);
 			}
 			in.close();
-
+			
 			
 		} catch (Exception e) {
 
 		}
-		
-		result.setResultText(response.toString());
-
+		result.setTranslatorName("Google");
+		result.setResultText(StringEscapeUtils.unescapeHtml(response.toString()));
+		result.setTransOption(option);
 		return result;
 	}
 
