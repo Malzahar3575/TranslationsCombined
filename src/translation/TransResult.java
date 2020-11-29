@@ -5,16 +5,10 @@ import java.time.LocalTime;
 public class TransResult {
 	private String translatorName;
 	private TransOption transOption;
-	private String resultText;
+	private String translatedText;
 	private LocalTime time;
 
-	public void setResultText(String text) {
-		resultText = text;
-	}
-
-	public String getResultText() {
-		return resultText;
-	}
+	
 
 	public void setTransOption(TransOption info) {
 		transOption = info;
@@ -38,5 +32,13 @@ public class TransResult {
 
 	public void setTranslatorName(String translatorName) {
 		this.translatorName = translatorName;
+	}
+
+	public String getTranslatedText() {
+		return translatedText;
+	}
+
+	public void setTranslatedText(String translatedText) {
+		this.translatedText = translatedText;
 	}
 }

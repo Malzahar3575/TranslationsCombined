@@ -9,16 +9,20 @@ import org.apache.commons.lang.StringEscapeUtils;
 
 
 public class GoogleTranslator extends Translator {
-
+	
 	@Override
 	public TransResult Translate(TransOption option) {
 		TransResult result = new TransResult();
 		StringBuilder response = new StringBuilder();
+		
+		String sourceLangCode = getLanguageCode(option.getSourceLanguage());
+		String targetLangCode = getLanguageCode(option.getTargetLanguage());		
+		
 		try {
 
 			String urlStr = "https://script.google.com/macros/s/AKfycbxWGbVLDsldxsFpn2AM5rr_effrWNSHFXS1TMwR6zhTyX24AXUH/exec"
-					+ "?q=" + URLEncoder.encode(option.getText(), "UTF-8") + "&target=" + option.getTargetLanguage()
-					+ "&source=" + option.getSourceLanguage();
+					+ "?q=" + URLEncoder.encode(option.getText(), "UTF-8") + "&target=" + targetLangCode
+					+ "&source=" + sourceLangCode;
 			URL url = new URL(urlStr);
 			
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -35,7 +39,7 @@ public class GoogleTranslator extends Translator {
 
 		}
 		result.setTranslatorName("Google");
-		result.setResultText(StringEscapeUtils.unescapeHtml(response.toString()));
+		result.setTranslatedText(StringEscapeUtils.unescapeHtml(response.toString()));
 		result.setTransOption(option);
 		return result;
 	}

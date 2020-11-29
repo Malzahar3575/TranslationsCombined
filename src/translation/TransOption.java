@@ -1,23 +1,23 @@
 package translation;
 
 public class TransOption {
-	private String sourceLanguage;
-	private String targetLanguage;
+	private Language sourceLanguage;
+	private Language targetLanguage;
 	private String text;
 
-	public String getSourceLanguage() {
+	public Language getSourceLanguage() {
 		return sourceLanguage;
 	}
 
-	public void setSourceLanguage(String language) {
+	public void setSourceLanguage(Language language) {
 		sourceLanguage = language;
 	}
 
-	public String getTargetLanguage() {
+	public Language getTargetLanguage() {
 		return targetLanguage;
 	}
 
-	public void setTargetLanguage(String language) {
+	public void setTargetLanguage(Language language) {
 		targetLanguage = language;
 	}
 

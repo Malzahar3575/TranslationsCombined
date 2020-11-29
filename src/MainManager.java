@@ -14,27 +14,20 @@ public class MainManager {
 	private void InitializeTranslators() {
 		TranslatorArray.add(new GoogleTranslator());
 		TranslatorArray.add(new NaverTranslator());
+		TranslatorArray.add(new KakaoTranslator());
 	}
 
 	private void addTransCombineResult(TransCombineResult result) {
 		TransHistory.add(result);
-		
-		for(TransInfo info : result.getTransInfoList()) {
-			System.out.format("Translator Name: %s / text: %s / count: %,8d%n", info.getTransResult().getTranslatorName(),
-								info.getTransResult().getResultText(),
-								info.getUsedCount());
-		}
-		
 	}
 
-	public void Translate(TransOption option) {
-		
+	public TransCombineResult Translate(TransOption option) {
 		TransCombineResult combineResult = new TransCombineResult();
 		for(Translator transtor : TranslatorArray) {
 			TransResult transResult = transtor.Translate(option);
 			long count = 0;
 			try {
-				count = googleCounter.Count("\"" + transResult.getResultText() + "\"");
+				count = googleCounter.Count("\"" + transResult.getTranslatedText() + "\"");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -46,6 +39,7 @@ public class MainManager {
 			
 		}
 		this.addTransCombineResult(combineResult);
+		return combineResult;
 	}
 
 }

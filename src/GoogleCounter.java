@@ -14,16 +14,17 @@ public class GoogleCounter {
                 .connect(url)
                 .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36") //
                 .get();
-		Element divResultStats = document.select("div#result-stats").first();
-		String result = document.select("div#result-stats").text();
 		
+		String noResult = document.select("div#topstuff").text();
+		if (noResult.contains(text)) {
+			return count;
+		}
+		
+		String result = document.select("div#result-stats").text();
 		String pattern = "[,\\d]+";
 		Matcher match = Pattern.compile(pattern).matcher(result);
 		if (match.find()) {
 			count = Long.parseLong(match.group().replaceAll(",", ""));
-		}
-		if (divResultStats==null) {
-		    throw new RuntimeException("Unable to find results stats.");
 		}
 		
 		return count;
