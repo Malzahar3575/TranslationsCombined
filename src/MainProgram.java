@@ -14,49 +14,51 @@ public class MainProgram {
 			System.out.println("번역할 언어를 선택해주세요.");
 			System.out.println("1: 한국어 -> 영어");
 			System.out.println("2: 영어 -> 한국어");
-			System.out.println("99: 종료");
+			System.out.println("99: 종료");			
 			
 			int number = -1;
 			try {
-				number = sc.nextInt();
+				String input = sc.nextLine();
+				number = Integer.parseInt(input);
 			}catch(Exception e) {
 				
-			}
-			if (sc.hasNextLine()) {
-				sc.nextLine();
 			}
 			if (number == 1) {
 				option.setSourceLanguage(Language.KOR);
 				option.setTargetLanguage(Language.ENG);
-				break;
 			}
 			else if(number == 2) {
 				option.setSourceLanguage(Language.ENG);
 				option.setTargetLanguage(Language.KOR);
-				break;
 			}
 			else if(number == 99) {
-				return;
+				System.out.println("종료되었습니다.");
+				break;
 			}
 			else {
-				System.out.println("잘못 된 입력입니다.");
+				System.out.println("잘못된 입력입니다.");
+				continue;
 			}
-		}
-		
-		System.out.println("번역할 문장을 입력해주세요");
-		String text = sc.nextLine();
-
-		option.setText(text);
-		
-		TransCombineResult result = manager.Translate(option);
-		for(TransInfo info : result.getTransInfoList()) {
-			System.out.format("Translator Name: %s / text: %s / count: %,d %n", info.getTransResult().getTranslatorName(),
-								info.getTransResult().getTranslatedText(),
-								info.getTransQuality().getUsedCount());
+			
+			System.out.println("번역할 문장을 입력해 주세요.");
+			
+			String text = null;
+			while(true) {
+				text = sc.nextLine();
+				if (text.isBlank() == false) {
+					break;
+				}
+			}
+			
+			option.setText(text);
+			
+			TransCombineResult result = manager.Translate(option);
+			for(TransInfo info : result.getTransInfoList()) {
+				System.out.format("Translator Name: %s / text: %s / count: %,d %n", info.getTransResult().getTranslatorName(),
+									info.getTransResult().getTranslatedText(),
+									info.getTransQuality().getUsedCount());
+			}
 		}
 		sc.close();
 	}
-
-	
-
 }
