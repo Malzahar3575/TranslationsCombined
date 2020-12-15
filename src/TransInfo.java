@@ -1,8 +1,9 @@
 import translation.TransResult;
+import translation.quality.TransQuality;
 
 public class TransInfo {
 	private TransResult transResult;
-	private long usedCount;
+	private TransQuality transQuality;
 
 	public TransResult getTransResult() {
 		return transResult;
@@ -12,11 +13,13 @@ public class TransInfo {
 		this.transResult = transResult;
 	}
 
-	public long getUsedCount() {
-		return usedCount;
+	public TransQuality getTransQuality() {
+		return transQuality;
 	}
 
-	public void setUsedCount(long usedCount) {
-		this.usedCount = usedCount;
+	public void setTransQuality(TransQuality transQuality) {
+		this.transQuality = transQuality;
 	}
+
+	
 }

@@ -1,13 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransCombineResult {
-	ArrayList<TransInfo> TransInfoList = new ArrayList<TransInfo>();
+	List<TransInfo> TransInfoList = new ArrayList<TransInfo>();
 
 	public void addTransInfo(TransInfo info) {
 		TransInfoList.add(info);
 	}
 
-	public ArrayList<TransInfo> getTransInfoList() {
+	public List<TransInfo> getTransInfoList() {
 		return TransInfoList;
 	}
 	

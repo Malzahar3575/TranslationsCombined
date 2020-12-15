@@ -29,8 +29,7 @@ public class KakaoTranslator extends Translator {
 
 	@Override
 	public TransResult Translate(TransOption option) {
-		String clientId = "KakaoAK 119c07ed94ab8daa6f048e31a557eb13";// 애플리케이션 클라이언트 아이디값";
-		String clientSecret = "5UlT3V9wQr";// 애플리케이션 클라이언트 시크릿값";
+		String clientId = "KakaoAK 119c07ed94ab8daa6f048e31a557eb13";
 
 		String apiURL = "https://dapi.kakao.com/v2/translation/translate?";
 
@@ -39,8 +38,6 @@ public class KakaoTranslator extends Translator {
 		requestHeaders.put("Content-Type", "application/x-www-form-urlencoded");
 
 		String responseBody = post(apiURL, requestHeaders, option);
-
-		this.LogDebug(responseBody);
 
 		TransResult result = new TransResult();
 

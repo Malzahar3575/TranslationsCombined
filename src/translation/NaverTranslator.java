@@ -29,8 +29,6 @@ public class NaverTranslator extends Translator {
 
 		String responseBody = post(apiURL, requestHeaders, option);
 
-		this.LogDebug(responseBody);
-
 		TransResult result = new TransResult();
 
 		JsonObject jsonObj = (JsonObject) JsonParser.parseString(responseBody);
