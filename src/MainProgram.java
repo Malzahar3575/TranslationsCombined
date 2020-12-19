@@ -49,14 +49,21 @@ public class MainProgram {
 					break;
 				}
 			}
-			
+			System.out.println("잠시만 기다려주세요. 번역중입니다...");
 			option.setText(text);
 			
 			TransCombineResult result = manager.Translate(option);
 			for(TransInfo info : result.getTransInfoList()) {
-				System.out.format("Translator Name: %s / text: %s / count: %,d %n", info.getTransResult().getTranslatorName(),
+				if (info.getTransResult().isError()) {
+					System.out.format("Translator Name: %s / An error has occurred. (error message: %s)%n", 
+							info.getTransResult().getTranslatorName(),
+							info.getTransResult().getErrorMessage());
+				}
+				else {
+					System.out.format("Translator Name: %s / text: %s / count: %,d %n", info.getTransResult().getTranslatorName(),
 									info.getTransResult().getTranslatedText(),
 									info.getTransQuality().getUsedCount());
+				}
 			}
 		}
 		sc.close();
